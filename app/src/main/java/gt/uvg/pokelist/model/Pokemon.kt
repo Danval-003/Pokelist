@@ -1,8 +1,9 @@
 package gt.uvg.pokelist.model
 
 data class Pokemon(
-    val id: Int,
-    val name: String
+    val id: Int=0,
+    val name: String,
+    val url:String
 ) {
     val imageUrlFront: String get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
     val imageUrlBack: String get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/$id.png"

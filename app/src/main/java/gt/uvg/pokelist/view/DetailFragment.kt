@@ -21,7 +21,7 @@ class DetailFragment : Fragment() {
         val args: DetailFragmentArgs by navArgs()
         val view = inflater.inflate(R.layout.fragment_detail,container,false)
         val id = args.pokemonId
-        val item = Pokemon(id, "")
+        val item = Pokemon(id, "","")
         putImage(item.imageUrlFront, view.findViewById<ImageView>(R.id.imageView2))
         putImage(item.imageUrlBack, view.findViewById<ImageView>(R.id.imageView3))
         putImage(item.imageUrlShinnyFront, view.findViewById<ImageView>(R.id.imageView4))

@@ -8,31 +8,36 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
-import gt.uvg.pokelist.R
+import gt.uvg.pokelist.databinding.FragmentDetailBinding
 import gt.uvg.pokelist.model.Pokemon
 
 class DetailFragment : Fragment() {
+
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding= FragmentDetailBinding.inflate(layoutInflater, container, false)
         val args: DetailFragmentArgs by navArgs()
-        val view = inflater.inflate(R.layout.fragment_detail,container,false)
+        val view = binding.root
         val id = args.pokemonId
         val item = Pokemon(id, "","")
-        putImage(item.imageUrlFront, view.findViewById<ImageView>(R.id.imageView2))
-        putImage(item.imageUrlBack, view.findViewById<ImageView>(R.id.imageView3))
-        putImage(item.imageUrlShinnyFront, view.findViewById<ImageView>(R.id.imageView4))
-        putImage(item.imageUrlShinnyBack, view.findViewById<ImageView>(R.id.imageView5))
+        putImage(item.imageUrlFront, binding.imageView2)
+        putImage(item.imageUrlBack, binding.imageView3)
+        putImage(item.imageUrlShinnyFront, binding.imageView4)
+        putImage(item.imageUrlShinnyBack, binding.imageView5)
         return view
     }
     fun putImage(url:String, imageView: ImageView?){
         Picasso.get()
             .load(url)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
+            .placeholder(
+                androidx.appcompat.R.drawable.abc_ab_share_pack_mtrl_alpha)
+            .error(androidx.appcompat.R.drawable.abc_ab_share_pack_mtrl_alpha)
             .into(imageView)
     }
 }

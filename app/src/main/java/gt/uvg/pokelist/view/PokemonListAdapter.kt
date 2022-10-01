@@ -1,9 +1,6 @@
 package gt.uvg.pokelist.view
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -13,17 +10,20 @@ import gt.uvg.pokelist.R
 import gt.uvg.pokelist.databinding.ItemPokemonViewBinding
 import gt.uvg.pokelist.model.Pokemon
 
-class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.Adapter<PokemonListAdapter.PokemonListHolder>() {
+class PokemonListAdapter(private var pokemonList: List<Pokemon>) : RecyclerView.Adapter<PokemonListAdapter.PokemonListHolder>() {
+
 
     inner class PokemonListHolder(val binding: ItemPokemonViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonListHolder {
         val binding = ItemPokemonViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return PokemonListHolder(binding)
     }
 
     override fun onBindViewHolder(holder: PokemonListHolder, position: Int) {
         val item = pokemonList[position]
+        item.id=position+1
         holder.binding.pokemonName.text=item.name
         holder.itemView.setOnClickListener {
             var bundle = bundleOf("pokemonId" to item.id)
@@ -31,8 +31,8 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.
         }
         Picasso.get()
             .load(item.imageUrlFront)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
+            .placeholder(androidx.appcompat.R.drawable.abc_ab_share_pack_mtrl_alpha)
+            .error(androidx.appcompat.R.drawable.abc_ab_share_pack_mtrl_alpha)
             .into(holder.binding.pokemonPhoto)
 
     }
@@ -40,4 +40,5 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.
     override fun getItemCount(): Int {
         return pokemonList.size
     }
+
 }
